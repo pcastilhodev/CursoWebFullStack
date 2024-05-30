@@ -38,6 +38,7 @@ public class AcessoController {
 	}
 	
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PreAuthorize("hasAuthority('SCOPE_ACESSO_ADMIN')")
 	@ResponseBody /*Poder dar um retorno da API*/
 	@PostMapping(value = "**/deleteAcesso") /*Mapeando a url para receber JSON*/
@@ -49,6 +50,7 @@ public class AcessoController {
 	}
 	
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@ResponseBody
 	@DeleteMapping(value = "**/deleteAcessoPorId/{id}")
 	public ResponseEntity<?> deleteAcessoPorId(@PathVariable("id") Long id) { 

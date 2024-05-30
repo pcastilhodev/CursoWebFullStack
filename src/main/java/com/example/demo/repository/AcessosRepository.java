@@ -12,7 +12,7 @@ import com.example.demo.model.acesso;
 @Repository
 @Transactional
 public interface AcessosRepository extends JpaRepository<acesso, Long> {
-	@Query(value = "select * from acessos a where upper(trim(a.DESCRICAO)) like %?1%", nativeQuery = true)
+	@Query(value = "select * from acesso a where upper(trim(a.DESCRICAO)) like %?1%", nativeQuery = true)
 	List<acesso> buscarAcessoDescricao(String descricao);
 
 }

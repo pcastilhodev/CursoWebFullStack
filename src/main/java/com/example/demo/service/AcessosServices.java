@@ -10,10 +10,10 @@ import com.example.demo.repository.AcessosRepository;
 public class AcessosServices {
 
 	@Autowired
-	private AcessosRepository aceRepository;
+	private AcessosRepository acessosRepository;
 	
 	public acesso save(acesso acesso) {
-		return aceRepository.save(acesso);
+		return acessosRepository.save(acesso);
 	}
 
 }

@@ -41,6 +41,21 @@ private static final long serialVersionUID = 1L;
 private long id;
 @Column (nullable = false)
 private String login;
+public long getId() {
+	return id;
+}
+
+public void setId(long id) {
+	this.id = id;
+}
+
+public pessoa getPessoa() {
+	return pessoa;
+}
+
+public void setPessoa(pessoa pessoa) {
+	this.pessoa = pessoa;
+}
 @Column (nullable = false)
 private String senha;
 
@@ -48,7 +63,7 @@ private String senha;
 @Column (nullable = false)
 private Date dataAtualSenha;
 
-@OneToMany(fetch = FetchType.LAZY)
+@OneToMany(fetch = FetchType.EAGER)
 @JoinTable(name = "USUARIOS_ACESSOS", uniqueConstraints = @UniqueConstraint(columnNames = { "usuario_id",
 "acesso_id" }, name = "uni_acesso_usuario"), joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id", 
 table = "usuarios", unique = false, foreignKey = @ForeignKey(name = "fk_usuario_id", value = ConstraintMode.CONSTRAINT)), 
@@ -126,10 +141,6 @@ public boolean isCredentialsNonExpired() {
 @Override
 public boolean isEnabled() {
 	return true;
-}
-
-public boolean isEmpty() {
-	return false;
 }
 public boolean isLoginCorrect(LoginRequest loginRequest, PasswordEncoder passwordEncoder) {
     return passwordEncoder.matches(loginRequest.senha(), this.senha);

@@ -28,7 +28,40 @@ public abstract class pessoa implements GrantedAuthority{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PESSOA")
     public Long id;
-    @OneToMany(mappedBy = "pessoa", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+
+	public String getNome() {
+		return Nome;
+	}
+
+	public void setNome(String nome) {
+		Nome = nome;
+	}
+
+	public String getTelefone() {
+		return Telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		Telefone = telefone;
+	}
+
+	@OneToMany(mappedBy = "pessoa", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<endereco> enderecos = new ArrayList<endereco>();
 
     @Column (nullable = false)
