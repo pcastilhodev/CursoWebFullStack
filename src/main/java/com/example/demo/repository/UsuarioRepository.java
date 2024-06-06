@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -32,4 +33,12 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long>{
 	@Modifying
 	@Query(value = "insert into USUARIOS_ACESSOS(usuario_id, acesso_id) values (?1, (select ID from ACESSOS where DESCRICAO = 'ROLE_USER'))", nativeQuery = true)
 	void insereAcessoUsuarioPessoaJuridica(Long id);
+	
+	@Transactional
+	@Modifying
+	@Query(value = "insert into USUARIOS_ACESSOS(usuario_id, acesso_id) values (?1, (select ID from ACESSOS where DESCRICAO = ?2))", nativeQuery = true)
+	void insereAcessoUsuarioPessoaJuridica(Long id, String acesso);
+	
+	@Query(value = "select * from USUARIO where DATA_ATUAL_SENHA <= current_date - 90", nativeQuery = true)
+	List<Usuario> usuarioSenhaVencida();
 }
